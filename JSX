@@ -1,0 +1,219 @@
+import React, { useState } from 'react'
+import "./quiz.css"
+import './score'
+import Score from './score';
+
+{/* <Score length={8} /> */}
+
+const Quiz = () => {
+    const [q,setQ]=useState([]);
+    const [currentIndex,setCurrentIndex]=useState(0);
+    const [addClass,setAddClass]=useState("");
+    const [answer,setAnswer]=useState("");
+    const [newnext,setNewNext]=useState("");
+    const [c,setC]=useState("");
+    const [score,setScore]=useState(0);
+   
+
+
+    
+    const arr=[{question:"who is luffy's real father?",
+                options:["Monkey D Graph","Monkey D Dragon","Shanks","Admiral Sengoku"],
+                correctAnswer:"Monkey D Dragon"
+},
+{question:"what is eren's real motive?",
+                options:["Genocide","Save Eldians","kill Paradis People","All Of These Above"],
+                correctAnswer:"All Of These Above"
+},
+{question:"which one is most popular?",
+                options:["Attack On Titan","One Piece","Naruto","Bleach"],
+                correctAnswer:"One Piece"
+},
+
+
+
+]
+
+const demo=[{name:'hi'}];
+
+
+const showResult=()=>{
+  console.log(score)
+  setAddClass("hidey")
+}
+            
+
+            
+console.log('your score is',score)
+console.log('arr length ',arr.length);
+console.log('current index',currentIndex)
+
+
+      
+
+    
+
+
+
+
+  return (
+    <>
+    <div className="container" >
+
+
+        <div className="title">
+            <h2>Anime Quizz </h2></div>
+
+
+
+  
+{arr.map((data,index)=>{
+    if(index===currentIndex){
+
+
+return(<>
+           <div className={"questions " +addClass }>
+           <h4> {arr[currentIndex].question}  </h4>
+          </div>
+
+
+          <div className="options">
+    
+
+<button  className={"btn one "+ addClass} value={arr[currentIndex].options[0]} key={arr[currentIndex].options[0]}   onClick={(e)=>{
+ if(e.target.value === arr[currentIndex].correctAnswer)
+ {
+   setScore(score+1)
+ }
+ setCurrentIndex(currentIndex+1)
+
+}}>
+            {arr[currentIndex].options[0]}
+               </button>
+
+
+
+ <button className={"btn two "+addClass}  value={arr[currentIndex].options[1]} key={arr[currentIndex].options[1]} onClick={(e)=>{
+ if(e.target.value === arr[currentIndex].correctAnswer)
+ {
+   setScore(score+1)
+ }
+ setCurrentIndex(currentIndex+1)
+
+}}   >
+         {arr[currentIndex].options[1]}
+         </button>
+
+     <button className={"btn three "+addClass}  value={arr[currentIndex].options[2]} key={arr[currentIndex].options[2]}  onClick={(e)=>{
+ if(e.target.value === arr[currentIndex].correctAnswer)
+ {
+   setScore(score+1)
+ }
+ setCurrentIndex(currentIndex+1)
+}}>{arr[currentIndex].options[2]}</button>  
+       
+    <button className={"btn four "+addClass}  value={arr[currentIndex].options[3]} key={arr[currentIndex].options[3]}  onClick={(e)=>{
+ if(e.target.value === arr[currentIndex].correctAnswer)
+ {
+   setScore(score+1)
+ }
+ setCurrentIndex(currentIndex+1)
+
+}}>{arr[currentIndex].options[3]}</button>  
+
+        
+       
+         </div>
+         
+
+
+         <button className={"next "+addClass} onClick={()=>{
+       arr.length-1==currentIndex?showResult():setCurrentIndex(currentIndex+1);
+       setAddClass("")
+          }}>Next</button>
+        </>)
+
+
+
+
+    }
+
+
+
+})}
+
+
+{ 
+demo.map(()=>{
+if(currentIndex===arr.length){
+      
+
+     return(<>
+             <h4>Your Score is {score} out of {arr.length}!</h4>
+
+            </>
+
+     )
+}
+
+})
+
+
+
+
+
+
+  //     arr.map((data,index)=>{
+  //   if(currentIndex==index){
+
+
+  //         if(aa==bb){
+           
+        
+        
+     
+
+           
+  //   return(
+  //       <>
+           
+  //       <h4 className='scoreyy'>You Scored {county} out of {arr.length}!</h4>
+  //             <button className={"next "} onClick={()=>{
+  //      arr.length-1==currentIndex?setCurrentIndex(0):setCurrentIndex(currentIndex+1);
+  //      setAddClass("")
+  //         }}>Next</button>
+        
+  //       </>
+  //   )
+
+  // }
+  // else{
+            
+  //      return(
+  //       <>
+  //           <h4>oops! wrong answer you scored 1 out of {arr.length}</h4>
+  //                 <button className={"next "} onClick={()=>{
+  //      arr.length-1==currentIndex?setCurrentIndex(0):setCurrentIndex(currentIndex+1);
+  //      setAddClass("")
+  //         }}>Next</button>
+        
+  //       </>
+  //      )
+  // }
+
+    
+
+
+
+  // 
+  }
+
+
+
+    </div>
+
+    </>
+  )
+}
+
+export default Quiz;
